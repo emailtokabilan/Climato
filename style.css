@@ -1,0 +1,116 @@
+body {
+    color: white;
+    font-weight: bolder;
+    overflow-x: hidden;
+    height: 100%;
+    background-color: #828e827e;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+h3 {
+    color: #FF9029;
+    font-size: 50px;
+    text-shadow: 0 .5rem 1rem rgba(66, 61, 61, 0.651);
+}
+
+.card0 {
+    box-shadow: 0 .5rem 1rem rgba(66, 61, 61, 0.651);
+    border-radius: 20px;
+    width: 94%;
+}
+
+.card1 {
+    background-color: #828E82;
+    box-shadow: 0 .5rem 1rem rgba(66, 61, 61, 0.651);
+    padding: 30px 20px 30px 50px;
+}
+
+.image {
+    width: 80%;
+    height: 80%;
+    box-shadow: 0 .5rem 1rem rgba(66, 61, 61, 0.651);
+    border-radius: 5px;
+}
+
+.large-font {
+    font-size: 70px;
+    font-family: Arial;
+}
+
+.fa-sun-o {
+    font-size: 22px;
+}
+
+.card2 {
+    background-color: #759195;
+    box-shadow: 0 .5rem 1rem rgba(66, 61, 61, 0.651);
+    padding: 0px 0px 40px 40px;
+    text-align: center;
+}
+
+input {
+    background-color: #759195;
+    padding: 24px 0px 12px 0px !important;
+    width: 80%;
+    box-sizing: border-box;
+    border: none !important;
+    border-bottom: 1px solid #CFD8DC !important;
+    font-size: 16px !important;
+    color: rgb(0, 0, 0) !important;
+    font-weight: bolder;
+}
+
+input:focus {
+    -moz-box-shadow: none !important;
+    -webkit-box-shadow: none !important;
+    box-shadow: none !important;
+    border-bottom: 1px solid #fff !important;
+    outline-width: 0;
+    font-weight: 400;
+    font-weight: bolder;
+}
+
+::placeholder {
+    color: #B0BEC5 !important;
+    opacity: 1;
+    font-weight: bolder;
+}
+
+:-ms-input-placeholder {
+    color: #B0BEC5 !important;
+}
+
+::-ms-input-placeholder {
+    color: #B0BEC5 !important;
+}
+
+.fa-search {
+    color: #759195;
+    background-color: #E1F5FE;
+    font-size: 20px;
+    padding: 20px;
+    width: 20%;
+    cursor: pointer;
+    font-weight: bolder;
+}
+
+.light-text {
+    color: #B0BEC5;
+}
+
+.suggestion:hover {
+    color: #fff;
+    cursor: pointer;
+}
+
+.line {
+    height: 1px;
+    background-color: #B0BEC5;
+}
+
+@media screen and (max-width: 500px) {
+    .card1 {
+        padding-left: 26px;
+    }
+}

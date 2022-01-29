@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Climato</title>
+    <link rel="stylesheet" type="text/css" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.bundle.min.js">
+    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="style.css">
+</head>
+
+<body>
+
+    <div class="container-fluid px-1 px-sm-3 py-5 mx-auto">
+        <div class="row d-flex justify-content-center">
+            <div class="row card0">
+                <div class="card1 col-lg-8 col-md-7">
+                    <h3 id="dt_location">Climato</h3>
+                    <div class="line mt-3"></div>
+                    <div class="text-center"> <img class="image mt-5" src="./images/3.gif"> </div>
+                    <p></p>
+                </div>
+                <div class="card2 col-lg-4 col-md-5">
+                    <form class="row px-3" id="submit_pincode" onSubmit="return false;"> <input type="number" name="location" id="pincode" placeholder="Enter Pincode" class="mb-5">
+                        <button type="submit" class="fa fa-search mb-5 mr-0 text-center"></button><br>
+                        <div class="line mt-3"></div><br>
+                    </form>
+                    <div>
+                        <img id="loading_spinner" width="50" src="images/loading2.gif" style="visibility: hidden;"> </div>
+                    <br><br>
+                    <p>Weather Details</p>
+                    <div class="line mt-3"></div><br>
+                    <div class="row px-3">
+                        <p class="light-text">Cloudy</p>
+                        <p class="ml-auto" id="dt_cloudy">--%</p>
+                    </div>
+                    <div class="row px-3">
+                        <p class="light-text">Humidity</p>
+                        <p class="ml-auto" id="dt_humidity">--%</p>
+                    </div>
+                    <div class="row px-3">
+                        <p class="light-text">Wind</p>
+                        <p class="ml-auto" id="dt_wind">--km/h</p>
+                    </div>
+                    <div class="row px-3">
+                        <p class="light-text">Temperature</p>
+                        <p class="ml-auto" id="dt_temp">--K</p>
+                    </div>
+                    <div class="line mt-3"></div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+    </div>
+    <style>
+        input[type=number]::-webkit-inner-spin-button,
+        input[type=number]::-webkit-outer-spin-button {
+            -webkit-appearance: none;
+            -moz-appearance: none;
+            appearance: none;
+            margin: 0;
+        }
+    </style>
+</body>
+<script>
+    $(document).ready(function() {
+
+        $('#submit_pincode').on('submit', function(e) {
+            $("#submit_pincode :button").prop("disabled", true);
+
+            $("#loading_spinner").css("visibility", "visible");
+            var pincode = $("#pincode").val();
+
+            if (pincode.length < 6 || pincode.length > 6) {
+                alert("Pincode size must be 6");
+                $("#submit_pincode :button").prop("disabled", false);
+                $("#loading_spinner").css("visibility", "hidden");
+                return;
+            }
+            var url = "http://api.openweathermap.org/data/2.5/weather?zip=" + pincode + ",in&unit=metric&appid=ba4c9707c4a371424964aff04871ef28";
+            fetch(url)
+                .then(response => response.json())
+                .then(data => {
+                    console.log(data);
+                    //$("#result").text(JSON.stringify(data));
+                    $("#dt_cloudy").text(data.clouds.all + "%");
+                    $("#dt_humidity").text(data.main.humidity + "%");
+                    $("#dt_wind").text(data.wind.speed + "km/h");
+                    $("#dt_temp").text(data.main.temp_max + " K");
+                    $("#dt_location").text(data.name);
+                    //alert("Load was performed.");
+                    $("#submit_pincode :button").prop("disabled", false);
+                    $("#loading_spinner").css("visibility", "hidden");
+                })
+                .catch(err => {
+                    $("#submit_pincode :button").prop("disabled", false);
+                    $("#loading_spinner").css("visibility", "hidden");
+                    alert("Information Not Found");
+
+                })
+        });
+
+    });
+</script>
+
+</html>
